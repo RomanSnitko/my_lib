@@ -1,0 +1,5 @@
+#pragma once
+
+#define MYLIB_VERSION_MAJOR @mylib_VERSION_MAJOR@
+#define MYLIB_VERSION_MINOR @mylib_VERSION_MINOR@
+#define MYLIB_VERSION_PATCH @mylib_VERSION_PATCH@

@@ -1,0 +1,10 @@
+build/
+*_build/
+*_install/
+mylib_build/
+app_build/
+mylib_install/
+CMakeFiles/
+CMakeCache.txt
+*.gz
+
