@@ -4,6 +4,9 @@ project(mylib VERSION 1.0.0 LANGUAGES CXX)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
+# allows the user to choose static (off) or dynamic (on).
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
+
 add_library(mylib src/writer.cpp)
 add_library(mylib::mylib ALIAS mylib)
 
@@ -35,6 +38,12 @@ target_include_directories(mylib PUBLIC
   $<BUILD_INTERFACE:${GEN_DIR}>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
+
+# for windows dll, fucked him.
+target_compile_definitions(mylib PRIVATE MYLIB_BUILDING)
+if(BUILD_SHARED_LIBS)
+  target_compile_definitions(mylib PUBLIC MYLIB_SHARED)
+endif()
 
 find_package(ZLIB REQUIRED)
 target_link_libraries(mylib PUBLIC ZLIB::ZLIB)
